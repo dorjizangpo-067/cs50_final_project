@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}Register{% endblock title %}
+
+{% block content %}
+<section class="bg-white p-5 rounded w-100 mx-auto mt-5">
+    <h1 class="text-center">Register</h1>
+    <form action="/register" method="post">
+        <div class="mb-3">
+            <label for="fullname" class="form-label">Full Name</label>
+            <input type="text" name="fullname" placeholder="Full Name" class="form-control" id="fullname">
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" name="username" placeholder="Username" class="form-control" id="username">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" name="email" class="form-control" placeholder="example@email.com" id="email" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="password1" class="form-label">Password</label>
+            <input type="password" name="password1" placeholder="Password" class="form-control" id="password1">
+        </div>
+        <div class="mb-3">
+            <label for="password2" class="form-label">Confirm Password</label>
+            <input type="password" name="password2" placeholder="password (Confirm )" class="form-control" id="password2">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Register</button>
+    </form>
+</section>
+{% endblock content %}

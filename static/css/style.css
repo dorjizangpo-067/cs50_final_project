@@ -1,0 +1,21 @@
+@media (min-width: 768px) {
+    section.bg-white.p-5.rounded.w-100.mx-auto.mt-5 {
+        width: 50% !important;
+    }
+    li.list-group-item.bg-transparent.text-body {
+        display: flex;
+        justify-content: space-between;
+    }
+    .header{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 0;
+    }
+    .header form{
+        width: 50%;
+    }
+}
+
+
