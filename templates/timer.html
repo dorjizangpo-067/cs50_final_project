@@ -4,6 +4,31 @@
 
 {% block content %}
 
-    <h1>Timer Page</h1>
+    <section>
+        <h1 class="text-center">Timer</h1>
+        <div class="outer-box-timer bg-dark">
+            <div class="hour time">00</div>
+            <div class="minute time">00</div>
+            <div class="second time">00</div>
+        </div>
+
+        <div class="input-group">
+            <input id="hour" type="number" min="0" aria-label="First name" class="form-control">
+            <input id="minute" type="number" min="0" max="59" aria-label="Last name" class="form-control">
+            <input id="second" type="number" min="1" max="59" aria-label="Last name" class="form-control">
+            <button id="add-time" class="btn btn-primary" type="button">Start</button>
+        </div>
+        <div class="container text-center mt-5">
+            <!-- Audio Element -->
+            <audio id="audio" src="{{ url_for('static', filename='audio/alam.mp3') }}" preload="auto"></audio>
+    
+            <!-- Button to Play Audio -->
+            <button id="play-button" class="btn btn-primary">Play Audio</button>
+    
+            <!-- Button to Pause Audio -->
+            <button id="pause-button" class="btn btn-danger" style="display:none;">Pause Audio</button>
+        </div>
+
+    </section>
 
 {% endblock content %}

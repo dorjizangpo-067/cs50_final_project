@@ -19,12 +19,6 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-@app.route('/')
-@login_required
-def hello_world():
-    return render_template("index.html")
-
-# ------------------------------------dont forget to make password minimum 8 characters-------------
 @app.route("/register", methods = ["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -71,7 +65,7 @@ def register():
         db.execute("INSERT INTO users (fullname, username, email, password) VALUES (?, ?, ?, ?)", fullname, username, email, generate_password_hash(password1))
         flash("successfully Registered", "success")
         session["username"] = username
-        return redirect("/")
+        return redirect("/timer")
     
     return render_template("register.html")
 
@@ -103,7 +97,7 @@ def login():
         if check_password_hash(user[0]["password"], password):
             flash("successfully Login", "success")
             session["username"] = username
-            return redirect("/")
+            return redirect("/timer")
         
         # if password didnt match
         else:
@@ -129,9 +123,17 @@ def todo_list():
         db.execute("INSERT INTO todolist (text, user_username) VALUES (?, ?)", todo, session["username"])
         return redirect("/todo-list")
 
-    return render_template("todo_list.html", todo_list_items=db.execute("SELECT text FROM todolist WHERE user_username = ?", session["username"]))
+    return render_template("todo_list.html", todo_list_items=db.execute("SELECT id, text FROM todolist WHERE user_username = ?", session["username"]))
 
+@app.route("/delete-todo/<int:task_id>", methods=["DELETE"])
+@login_required
+def delete_todo(task_id):
+    # Delete the todo item from the database
+    db.execute("DELETE FROM todolist WHERE id = ? AND user_username = ?", task_id, session["username"])
     
+    # Send a JSON response to indicate success
+    return jsonify({"status": "success"}), 200
+
 @app.route("/timer")
 @login_required
 def timer():
