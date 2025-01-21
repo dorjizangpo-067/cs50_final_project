@@ -5,7 +5,7 @@ from cs50 import SQL
 
 app = Flask(__name__)
 
-app.secret_key = 'xfcgvhbjktfgdcvb456'
+app.secret_key = 'xfcgvhbjktfgdcvb45ugfyrdgfyrcvgtyrtcf vhgrdxf6'
 
 db = SQL("sqlite:///database.db")
 
