@@ -118,10 +118,10 @@ def todo_list():
         todo = request.form.get("todo-list")
         if todo is None or todo == "":
             flash("Invilad Todo list", "danger")
-            return redirect("/todo-list")
+            return redirect("")
         
         db.execute("INSERT INTO todolist (text, user_username) VALUES (?, ?)", todo, session["username"])
-        return redirect("/todo-list")
+        return redirect("")
 
     return render_template("todo_list.html", todo_list_items=db.execute("SELECT id, text FROM todolist WHERE user_username = ?", session["username"]))
 
