@@ -48,6 +48,27 @@ function valid_time_checker(input) {
     // Check if input is a valid number and within the range of 0 to 59 for minutes and seconds
     return !isNaN(input) && input >= 0 && input <= 59;
 }
+// Add todo
+let addTodo = document.querySelector("#add-todo");
+
+addTodo.addEventListener('click', (e) => {
+    e.preventDefault(); // Prevent the default action if needed
+    
+    // Make the AJAX request
+    $.ajax({
+        type: "POST",
+        url: "/add-todo",
+        data: {"text": document.querySelector("#todo-list").value},
+        success: function(response) {
+            // Refresh the page after the request is successful
+            location.reload();
+        },
+        error: function(xhr, status, error) {
+            console.error("Error adding todo: " + error);
+        }
+    });
+});
+
 
 // Timer
 let timerInterval;
