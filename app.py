@@ -111,7 +111,7 @@ def logout():
     session.clear()
     return redirect("/login")
 
-@app.route("/todo-list", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 @login_required
 def todo_list():
     if request.method == "POST":
