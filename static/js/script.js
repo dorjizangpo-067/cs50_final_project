@@ -1,3 +1,8 @@
+// make dimamic year
+let year = document.querySelector(".year")
+const currentYear = new Date().getFullYear()
+year.innerHTML = `${currentYear}`;
+
 // Handle the "Delete" button click event
 const deleteButtons = document.querySelectorAll('.delete-btn');
 
@@ -144,3 +149,4 @@ btn.addEventListener('click', (e) => {
 
     e.preventDefault();
 });
+
