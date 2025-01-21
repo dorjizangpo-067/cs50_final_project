@@ -7,16 +7,16 @@
     <h1 class="text-center">Register</h1>
     <form action="/register" method="post">
         <div class="mb-3">
-            <label for="fullname" class="form-label">Full Name</label>
+            <label for="fullname" autofocus autocomplete="off" class="form-label">Full Name</label>
             <input type="text" name="fullname" placeholder="Full Name" class="form-control" id="fullname">
         </div>
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
-            <input type="text" name="username" placeholder="Username" class="form-control" id="username">
+            <input type="text" autocomplete="off" name="username" placeholder="Username" class="form-control" id="username">
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
-            <input type="email" name="email" class="form-control" placeholder="example@email.com" id="email" aria-describedby="emailHelp">
+            <input type="email" autocomplete="off" name="email" class="form-control" placeholder="example@email.com" id="email" aria-describedby="emailHelp">
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">

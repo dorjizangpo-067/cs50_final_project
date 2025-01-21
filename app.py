@@ -111,18 +111,9 @@ def logout():
     session.clear()
     return redirect("/login")
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET"])
 @login_required
 def todo_list():
-    if request.method == "POST":
-        todo = request.form.get("todo-list")
-        if todo is None or todo == "":
-            flash("Invilad Todo list", "danger")
-            return redirect("")
-        
-        db.execute("INSERT INTO todolist (text, user_username) VALUES (?, ?)", todo, session["username"])
-        return redirect("")
-
     return render_template("todo_list.html", todo_list_items=db.execute("SELECT id, text FROM todolist WHERE user_username = ?", session["username"]))
 
 @app.route("/delete-todo/<int:task_id>", methods=["DELETE"])
@@ -133,6 +124,19 @@ def delete_todo(task_id):
     
     # Send a JSON response to indicate success
     return jsonify({"status": "success"}), 200
+
+@app.route("/add-todo", methods = ["POST"])
+@login_required
+def add_todo():
+    if request.method == "POST":
+        todo = request.form.get("text")
+        if todo is None or todo == "":
+            flash("Invilad Todo list", "danger")
+            return redirect("/", 204)
+        
+        db.execute("INSERT INTO todolist (text, user_username) VALUES (?, ?)", todo, session["username"])
+        return redirect("/", 204)
+
 
 @app.route("/timer")
 @login_required

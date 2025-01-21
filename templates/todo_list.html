@@ -7,15 +7,15 @@
 <section class="">
     <div class="header">
         <h1 class="text-white text-center">Todo List</h1>
-        <form class="d-flex" action="/" method="post">
-            <input autofocus class="form-control me-2" type="text" placeholder="Add Todos" name="todo-list">
-            <button class="btn btn-outline-primary text-white" type="submit">Add</button>
-        </form>
+        <div class="d-flex w-100 todo-filed">
+            <input autofocus class="form-control me-2" type="text" placeholder="Add Todos" id="todo-list">
+            <button id="add-todo" class="btn btn-outline-primary text-white">Add</button>
+        </div>
     </div>
     <hr class="mb-0 mt-1">
     <ul class="list-group list-group-flush">
         {% for todos in todo_list_items %}
-            <li id="todo-{{ todos.id }}" class="list-group-item bg-transparent text-body text-gray">
+            <li id="todo-{{ todos.id }}" class="list-group-item bg-transparent text-body text-gray text-white">
                 {{ todos.text }}
                 <div class="ml-3 d-flex align-items-center justify-content-evenly">
                     <button type="button" data-taskid="{{ todos.id }}" class="btn btn-outline-danger text-white delete-btn">Delete</button>
