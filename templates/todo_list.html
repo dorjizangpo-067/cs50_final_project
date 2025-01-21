@@ -26,3 +26,57 @@
 </section>
 
 {% endblock content %}
+
+{% block script %}
+<script>
+// Handle the "Delete" button click event
+const deleteButtons = document.querySelectorAll('.delete-btn');
+
+deleteButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const taskId = this.getAttribute('data-taskid');  // Get the task ID
+        
+        // Send a DELETE request to the Flask backend
+        fetch(`/delete-todo/${taskId}`, {
+            method: 'DELETE',  // HTTP method
+            headers: {
+                'Content-Type': 'application/json',  // The content type is JSON
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // Remove the todo item from the DOM
+                const todoItem = document.getElementById('todo-' + taskId);
+                if (todoItem) {
+                    todoItem.remove();
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+});
+// Add todo
+let addTodo = document.querySelector("#add-todo");
+
+addTodo.addEventListener('click', (e) => {
+    e.preventDefault(); // Prevent the default action if needed
+    
+    // Make the AJAX request
+    $.ajax({
+        type: "POST",
+        url: "/add-todo",
+        data: {"text": document.querySelector("#todo-list").value},
+        success: function(response) {
+            // Refresh the page after the request is successful
+            location.reload();
+        },
+        error: function(xhr, status, error) {
+            console.error("Error adding todo: " + error);
+        }
+    });
+});
+</script>
+{% endblock script %}
